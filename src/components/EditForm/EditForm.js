@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./Form.css";
+import "./EditForm.css";
 import axios from "axios";
 
-class Form extends Component {
+class EditForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -10,7 +10,6 @@ class Form extends Component {
       price: 0,
       image_url: ""
     };
-    this.addProduct = this.addProduct.bind(this);
   }
 
   handleImgChange = val => this.setState({ image_url: val });
@@ -18,14 +17,19 @@ class Form extends Component {
   handlePriceChange = val => this.setState({ price: val });
   resetState = () => this.setState({ image_url: "", name: "", price: 0 });
 
-  addProduct() {
-    const { name, price, image_url } = this.state;
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    console.log(id);
+    // const { name, price, image_url} = this.state;
     axios
-      .post("/api/product", { name, price, image_url })
-      .then(res => {
-        this.props.getInventory();
-        this.resetState();
-      })
+      .get(`/api/inventory/${id}`)
+      .then(res =>
+        this.setState({
+          name: res.data.name,
+          price: res.data.price,
+          image_url: res.data.image_url
+        })
+      )
       .catch(err => console.log(err));
   }
 
@@ -60,7 +64,7 @@ class Form extends Component {
             Cancel
           </button>
           <button className="Btn" onClick={() => this.addProduct()}>
-            Add to Inventory
+            Submit Edit
           </button>
         </div>
       </div>
@@ -68,4 +72,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default EditForm;

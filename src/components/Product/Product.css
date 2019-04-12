@@ -1,0 +1,17 @@
+.Product {
+  border: 1px solid black;
+  width: 30vw;
+  height: 20vh;
+  background-color: #d34735;
+
+  display: flex;
+  flex-direction: row;
+}
+.Image {
+  width: 13vw;
+}
+
+.Info-container {
+  display: flex;
+  flex-direction: column;
+}
