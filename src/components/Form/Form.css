@@ -1,0 +1,23 @@
+.Form {
+  width: 25vw;
+  height: 50vh;
+  background-color: #3ad886;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Img {
+  width: 10vw;
+}
+
+.Input-field {
+  width: 20vw;
+}
+
+.Btn-container {
+  display: flex;
+  justify-content: space-around;
+}
